@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index');
 const authorRouter = require('./routes/authors');
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout') //SETS THE DIRECTORY FOR THE LAYOUTS
 app.use(expressLayouts) //THIS MAKES THE SERVER USE /VIEWS/LAYOUTS/LAYOUT FOR ALL PAGES
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false}));
 
